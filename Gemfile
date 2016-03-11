@@ -10,6 +10,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'omniauth-github'
 gem 'haml-rails'
+gem 'octokit'
 
 group :development, :test do
   gem 'byebug'

@@ -24,7 +24,8 @@ module Users
       User.create!(
         provider: attributes['provider'],
         uid: attributes['uid'],
-        name: attributes['info']['name']
+        name: attributes['info']['name'],
+        token: attributes['credentials']['token']
       )
     end
   end

@@ -8,6 +8,9 @@ RSpec.describe Users::FindOrCreateService, type: :service do
         'uid' => 'uid',
         'info' => {
           'name' => 'name'
+        },
+        'credentials' => {
+          'token' => 'token'
         }
       }
     end
@@ -35,7 +38,7 @@ RSpec.describe Users::FindOrCreateService, type: :service do
         ) { nil }
 
         expect(User).to receive(:create!).with(
-          provider: 'provider', uid: 'uid', name: 'name'
+          provider: 'provider', uid: 'uid', name: 'name', token: 'token'
         ) { user }
       end
 
