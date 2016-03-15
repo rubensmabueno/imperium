@@ -1,0 +1,32 @@
+.demo-drawer.mdl-layout__drawer.mdl-color--blue-grey-900.mdl-color-text--blue-grey-50
+  %header.demo-drawer-header
+    - if current_repository
+      %img.demo-avatar{ src: current_repository.owner.avatar_url }/
+    - else
+      %img.demo-avatar
+    .demo-avatar-dropdown
+      - if current_repository
+        %span= current_repository.full_name
+      - else
+        Choose a repository
+      .mdl-layout-spacer
+      %button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--icon#accbtn
+        %i.material-icons{ role: 'presentation' } arrow_drop_down
+        %span.visuallyhidden Accounts
+      %ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect{ for: 'accbtn' }
+        - current_client.repositories.each do |repository|
+          %li.mdl-menu__item= link_to repository.name, select_repository_path(name: repository.full_name)
+        %li.mdl-menu__item
+          %i.material-icons> add
+          Add another account...
+  %nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800
+    = link_to root_path, class: 'mdl-navigation__link' do
+      %i.mdl-color-text--blue-grey-400.material-icons{ role: 'presentation' }> home
+      Home
+    = link_to analytics_issues_path, class: 'mdl-navigation__link' do
+      %i.mdl-color-text--blue-grey-400.material-icons{ role: 'presentation' }> local_offer
+      Analytics
+    .mdl-layout-spacer
+    %a.mdl-navigation__link{ href: '' }
+      %i.mdl-color-text--blue-grey-400.material-icons{ role: 'presentation' } help_outline
+      %span.visuallyhidden Help

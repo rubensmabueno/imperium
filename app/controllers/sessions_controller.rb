@@ -1,4 +1,9 @@
-class SessionsController < ApplicationController
+class SessionsController < ActionController::Base
+  protect_from_forgery with: :exception
+
+  def new
+  end
+
   def create
     user = Users::FindOrCreateService.call(request.env['omniauth.auth'])
     session[:user_id] = user.id
